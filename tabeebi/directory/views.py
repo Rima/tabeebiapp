@@ -93,7 +93,7 @@ def providers_list(request):
     if city:
         kwargs.update({ 'location__city_id' : city })
     if country:
-        kwargs.update({ 'location__country_id' : city })
+        kwargs.update({ 'location__country_id' : country })
     if networks:
         kwargs.update({ 'networks_categories__id__in' : networks })
 
