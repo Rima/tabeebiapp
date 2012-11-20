@@ -49,10 +49,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tabeebi/directory/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="12" selection-start="2329" selection-end="2337" vertical-scroll-proportion="0.15267175">
+            <state line="118" column="29" selection-start="3197" selection-end="3197" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -76,11 +76,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tabeebi/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="159" selection-end="159" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="1" column="33" selection-start="85" selection-end="85" vertical-scroll-proportion="0.02245509">
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,9 +110,9 @@
         <option value="$PROJECT_DIR$/tabeebi/settings.py" />
         <option value="$PROJECT_DIR$/tabeebi/directory/__init__.py" />
         <option value="$PROJECT_DIR$/tabeebi/directory/admin.py" />
-        <option value="$PROJECT_DIR$/tabeebi/urls.py" />
         <option value="$PROJECT_DIR$/tabeebi/directory/models.py" />
         <option value="$PROJECT_DIR$/tabeebi/directory/views.py" />
+        <option value="$PROJECT_DIR$/tabeebi/urls.py" />
       </list>
     </option>
   </component>
@@ -267,25 +269,6 @@
       <option name="MULTIPROCESS" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <module name="tabeebi" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -305,6 +288,25 @@
       <option name="useCustomRunCommand" value="false" />
       <option name="customRunCommand" value="" />
       <option name="launchJavascriptDebuger" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <module name="tabeebi" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -454,6 +456,13 @@
         <state line="3" column="21" selection-start="34" selection-end="51" vertical-scroll-proportion="0.053066038" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tabeebi/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="16" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tabeebi/directory/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="61" column="23" selection-start="1852" selection-end="1871" vertical-scroll-proportion="0.0" />
@@ -474,24 +483,19 @@
         <state line="23" column="46" selection-start="700" selection-end="700" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tabeebi/settings.py">
+    <entry file="file://$PROJECT_DIR$/tabeebi/directory/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="16" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0">
+        <state line="118" column="29" selection-start="3197" selection-end="3197" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tabeebi/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="159" selection-end="159" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tabeebi/directory/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="12" selection-start="2329" selection-end="2337" vertical-scroll-proportion="0.15267175">
-          <folding />
+        <state line="1" column="33" selection-start="85" selection-end="85" vertical-scroll-proportion="0.02245509">
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
