@@ -19,20 +19,39 @@ class NetworkCategory(models.Model):
         return self.category
 
 
-class Location(models.Model):
-    country = models.IntegerField( choices=COUNTRIES )
-    city = models.IntegerField( choices=CITIES )
+class Country(models.Model):
+    name = models.CharField(max_length=255)
 
-    address = models.CharField( max_length=255 )
+    def __unicode__(self):
+        return self.name
+
+class City(models.Model):
+    name = models.CharField(max_length=255)
+    country = models.ForeignKey(Country)
+
+    def __unicode__(self):
+        return self.name
+
+class Location(models.Model):
+    country = models.ForeignKey(Country)
+    city = models.ForeignKey(City, null=True, blank=True)
+
+    address1 = models.CharField( max_length=255 )
+    address2 = models.CharField( max_length=255 )
+    address3 = models.CharField( max_length=255 )
+    address4 = models.CharField( max_length=255 )
+
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField( null=True, blank=True )
 
     def basic_dict(self):
-        return { 'country' : self.get_country_display(), 'city' : self.get_city_display(),
-                 'address' : self.address , 'latitude' : self.latitude, 'longitude' : self.longitude }
+        return { 'country' : self.country.name, 'city' : self.city.name,
+                 'address1' : self.address1, 'address2' : self.address2,
+                 'address3' : self.address3, 'address4' : self.address4,
+                 'latitude' : self.latitude, 'longitude' : self.longitude }
 
     def __unicode__(self):
-        return "%s - %s - %s" % ( self.get_country_display(), self.get_city_display(), self.address )
+        return "%s - %s - %s" % ( self.country.name, self.city.name, self.address1 )
 
 
 
@@ -44,7 +63,7 @@ class Provider(models.Model):
 
     telephone = models.CharField( max_length=255 )
     fax = models.CharField(max_length=255, null=True, blank=True )
-    pobox = models.CharField( max_length=7, null=True, blank=True )
+    pobox = models.CharField( max_length=100, null=True, blank=True )
 
     website = models.CharField(max_length=100, null=True, blank=True)
     email = models.CharField(max_length=255, null=True, blank=True)
@@ -60,10 +79,39 @@ class Provider(models.Model):
             'pobox' : self.pobox,
             'website' : self.website,
             'email' : self.email,
+            'distance' : '',
         }
 
     def __unicode__(self):
         return self.name
 
+
+
+class DataState(models.Model):
+    name = models.CharField(max_length=255)
+    version = models.PositiveSmallIntegerField()
+    enable = models.NullBooleanField()
+
+    def __unicode__(self):
+        return self.name
+
+
+
+class FlatTable(models.Model):
+    provider = models.CharField(max_length=255)
+    type = models.CharField(max_length=255)
+    network = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    pobox = models.CharField(max_length=255)
+    telephone = models.CharField(max_length=255)
+    fax = models.CharField(max_length=255)
+    location1 = models.CharField(max_length=400)
+    location2 = models.CharField(max_length=400)
+
+    insurance_name = models.CharField(max_length=255)
+
+    latitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
 
 
