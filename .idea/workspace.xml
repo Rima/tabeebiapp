@@ -52,7 +52,7 @@
       <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tabeebi/directory/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="40" selection-start="2404" selection-end="2412" vertical-scroll-proportion="0.17557251">
+            <state line="85" column="12" selection-start="2329" selection-end="2337" vertical-scroll-proportion="0.15267175">
               <folding />
             </state>
           </provider>
@@ -79,7 +79,7 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tabeebi/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="71" selection-start="634" selection-end="634" vertical-scroll-proportion="0.0">
+            <state line="5" column="0" selection-start="159" selection-end="159" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -454,11 +454,6 @@
         <state line="3" column="21" selection-start="34" selection-end="51" vertical-scroll-proportion="0.053066038" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tabeebi/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="16" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tabeebi/directory/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="61" column="23" selection-start="1852" selection-end="1871" vertical-scroll-proportion="0.0" />
@@ -479,16 +474,23 @@
         <state line="23" column="46" selection-start="700" selection-end="700" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tabeebi/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="16" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tabeebi/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="71" selection-start="634" selection-end="634" vertical-scroll-proportion="0.0">
+        <state line="5" column="0" selection-start="159" selection-end="159" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tabeebi/directory/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="40" selection-start="2404" selection-end="2412" vertical-scroll-proportion="0.17557251">
+        <state line="85" column="12" selection-start="2329" selection-end="2337" vertical-scroll-proportion="0.15267175">
           <folding />
         </state>
       </provider>
