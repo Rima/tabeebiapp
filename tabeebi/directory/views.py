@@ -192,6 +192,11 @@ def store_data_in_places(request):
 
 
 
+def faq(request):
+    results = list(FrequentlyAskedQuestion.objects.values('question', 'answer'))
+
+    return HttpResponse(dumps(results),
+        content_type='application/json')
 
 
 

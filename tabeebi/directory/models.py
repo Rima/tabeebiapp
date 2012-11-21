@@ -86,6 +86,12 @@ class Provider(models.Model):
         return self.name
 
 
+class FrequentlyAskedQuestion(models.Model):
+    question = models.CharField(max_length=255)
+    answer = models.TextField()
+
+    def __unicode__(self):
+        return self.question
 
 class DataState(models.Model):
     name = models.CharField(max_length=255)

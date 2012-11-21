@@ -17,6 +17,10 @@ class ProviderAdmin(admin.ModelAdmin):
 
 admin.site.register(Provider, ProviderAdmin)
 
+class FAQAdmin(admin.ModelAdmin):
+    list_display = ('question', 'answer')
+admin.site.register(FrequentlyAskedQuestion, FAQAdmin)
+
 
 class FlatTableAdmin(admin.ModelAdmin):
     list_display = ('provider', 'type', 'network', 'country', 'city', 'pobox', 'telephone', 'fax', 'location1', 'location2')
