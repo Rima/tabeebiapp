@@ -4,6 +4,7 @@ from tabeebi.directory import CITIES_CHOICES, TYPES_MATCH
 from tabeebi.directory.helper import queryset_iterator
 from tabeebi.directory.models import *
 from django.utils.simplejson import dumps
+from django.core.cache import cache
 
 from django.core.serializers import serialize
 
@@ -80,6 +81,10 @@ def insurance_companies(request):
 
 def providers_list(request):
 
+    cache_key = "providers_list"
+
+
+    type = request.GET.get('type', None)
     city = request.GET.get('city', None)
     country = request.GET.get('country', None)
     longitude = request.GET.get('longitude', '')
@@ -89,22 +94,34 @@ def providers_list(request):
     if networks:
         networks = networks.split(',')
 
+
     kwargs = {}
     if city:
         kwargs.update({ 'location__city_id' : city })
+        cache_key = "%s_%s" % (cache_key , city)
     if country:
         kwargs.update({ 'location__country_id' : country })
+        cache_key = "%s_%s" % (cache_key , country)
     if networks:
         kwargs.update({ 'networks_categories__id__in' : networks })
+        cache_key = "%s_%s" % (cache_key , networks)
+    if type:
+        kwargs.update({ 'type' : int(type) })
+        cache_key = "%s_%s" % (cache_key , type)
 
-    if kwargs:
-        providers = Provider.objects.filter(**kwargs)
-    else:
-        providers = Provider.objects.all()
+    results = cache.get(cache_key)
 
-    results = []
-    for provider in providers:
-        results.append(provider.to_json())
+    if not results:
+        if kwargs:
+            providers = Provider.objects.filter(**kwargs)
+        else:
+            providers = Provider.objects.all()
+
+        results = []
+        for provider in providers:
+            results.append(provider.to_json())
+
+        cache.set(cache_key, results)
 
     return HttpResponse(dumps(results),
         content_type='application/json')
