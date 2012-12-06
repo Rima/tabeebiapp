@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import Http404, HttpResponse
 from tabeebi.directory import CITIES_CHOICES, TYPES_MATCH
 from tabeebi.directory.helper import queryset_iterator
@@ -56,6 +57,14 @@ def data_states(request):
         content_type='application/json')
 
 
+def provider_types_list(request):
+
+    results = TYPES
+
+    return HttpResponse(dumps(results),
+        content_type='application/json')
+
+
 def countries_cities_list(request):
     countries = Country.objects.all()
     results = []
@@ -83,6 +92,7 @@ def providers_list(request):
 
     cache_key = "providers_list"
 
+    number_per_page = 20
 
     type = request.GET.get('type', None)
     city = request.GET.get('city', None)
@@ -109,21 +119,34 @@ def providers_list(request):
         kwargs.update({ 'type' : int(type) })
         cache_key = "%s_%s" % (cache_key , type)
 
-    results = cache.get(cache_key)
+    if kwargs:
+        providers = Provider.objects.filter(**kwargs)
+    else:
+        providers = Provider.objects.all()
 
-    if not results:
-        if kwargs:
-            providers = Provider.objects.filter(**kwargs)
-        else:
-            providers = Provider.objects.all()
+    paginator = Paginator(providers, number_per_page)
 
-        results = []
-        for provider in providers:
-            results.append(provider.to_json())
+    page = request.GET.get('page', 1)
+    try:
+        providers = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        providers = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        providers = paginator.page(paginator.num_pages)
 
-        cache.set(cache_key, results)
+    results = []
+    for provider in providers.object_list:
+        results.append(provider.to_json())
 
-    return HttpResponse(dumps(results),
+    final_results = [ { 'providers' : results, 'has_next' : providers.has_next(),
+                        'has_previous' : providers.has_previous(),
+                        'count' : paginator.count,
+                        'next_page_number' : providers.next_page_number(),
+                        'previous_page_number' : providers.previous_page_number()} ]
+
+    return HttpResponse(dumps(final_results),
         content_type='application/json')
 
 

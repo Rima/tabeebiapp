@@ -45,9 +45,11 @@ class Location(models.Model):
     longitude = models.FloatField( null=True, blank=True )
 
     def basic_dict(self):
+
+        addresses = [self.address1, self.address2, self.address3, self.address4]
+
         return { 'country' : self.country.name, 'city' : self.city.name,
-                 'address1' : self.address1, 'address2' : self.address2,
-                 'address3' : self.address3, 'address4' : self.address4,
+                 'addresses' : addresses,
                  'latitude' : self.latitude, 'longitude' : self.longitude }
 
     def __unicode__(self):
@@ -80,6 +82,14 @@ class Provider(models.Model):
             'website' : self.website,
             'email' : self.email,
             'distance' : '',
+
+
+            "other":[{"fieldname":"mobile phone",
+                      "fieldvalue":"0936726827"},
+                    {"fieldname":"work days",
+                     "fieldvalue":" Mon till Thu"},
+                    {"fieldname":"Emergency",
+                     "fieldvalue":"YES"}]
         }
 
     def __unicode__(self):
