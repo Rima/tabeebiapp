@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url( r'^GetCountries', 'tabeebi.directory.views.countries_cities_list'  ),
     url( r'^GetInsuranceCompanies', 'tabeebi.directory.views.insurance_companies'  ),
     url( r'^GetPorviders', 'tabeebi.directory.views.providers_list'  ),
+    url( r'^GetProviderTypes', 'tabeebi.directory.views.provider_types_list'  ),
     url( r'^GetFAQ', 'tabeebi.directory.views.faq'  ),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
