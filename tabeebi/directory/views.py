@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models.query_utils import Q
 from django.http import Http404, HttpResponse
 from tabeebi.directory import CITIES_CHOICES, TYPES_MATCH
 from tabeebi.directory.helper import queryset_iterator
@@ -87,13 +88,14 @@ def insurance_companies(request):
     return HttpResponse(dumps(results),
             content_type='application/json')
 
-
+import operator
 def providers_list(request):
 
     cache_key = "providers_list"
 
     number_per_page = 20
 
+    query = request.GET.get('query', None)
     type = request.GET.get('type', None)
     city = request.GET.get('city', None)
     country = request.GET.get('country', None)
@@ -106,6 +108,16 @@ def providers_list(request):
 
 
     kwargs = {}
+    query_args = []
+    if query:
+        query = query.strip()
+        kw_tag_qs = (Q(location__address1__icontains=query) |
+                                            Q( location__address2__icontains=query) |
+                                            Q( location__address3__icontains=query) |
+                                            Q( location__address4__icontains=query) |
+                                            Q( name__icontains=query)
+                     )
+        query_args.append(kw_tag_qs)
     if city:
         kwargs.update({ 'location__city_id' : city })
         cache_key = "%s_%s" % (cache_key , city)
@@ -120,8 +132,14 @@ def providers_list(request):
         cache_key = "%s_%s" % (cache_key , type)
 
     if kwargs:
-        providers = Provider.objects.filter(**kwargs)
-    else:
+        tag_qs = reduce(operator.and_, ( Q(**keyvalue)  for keyvalue in kwargs ))
+        query_args.append(tag_qs)
+
+    if query_args:
+        query_final = reduce(operator.or_, (item for item in query_args))
+        providers = Provider.objects.filter(query_final).distinct()
+
+    if not query_args:
         providers = Provider.objects.all()
 
     paginator = Paginator(providers, number_per_page)
