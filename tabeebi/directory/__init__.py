@@ -82,6 +82,9 @@ TYPES = (
     (3, "Diagnostic Center"),
     (4, "Pharmacy"),
     (5, "Dental Clinic"),
+    (6, "Hearing Aids Center"),
+    (7, "Physiotherapy"),
+    (8, "Poly Clinic"),
 )
 
 TYPES_MATCH = {
@@ -93,8 +96,19 @@ TYPES_MATCH = {
     'dental' : 5,
     'optical' : 6,
     'diagnostic centre' : 3,
+    'hearing aids centre' : 6,
+    'physiotherapy' : 7,
+    'poly clinic' : 8,
 }
 
+
+COUNTRY_ISO_CODE_MAP = {
+    'AE' : 'UAE',
+    'BH' : 'Bahrain',
+    'KW' : 'Kuwait',
+    'QA' : 'Qatar',
+    'OM' : 'Oman',
+}
 
 
 CITIES_CHOICES = ['Abha','Al Artawiah', 'Al Baha']
