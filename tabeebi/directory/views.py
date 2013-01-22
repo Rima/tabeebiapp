@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models.query_utils import Q
 from django.http import Http404, HttpResponse
-from tabeebi.directory import CITIES_CHOICES, TYPES_MATCH
+from tabeebi.directory import CITIES_CHOICES, TYPES_MATCH, COUNTRY_ISO_CODE_MAP
 from tabeebi.directory.helper import queryset_iterator
 from tabeebi.directory.models import *
 from django.utils.simplejson import dumps
@@ -69,23 +69,35 @@ def provider_types_list(request):
 def countries_cities_list(request):
     countries = Country.objects.all()
     results = []
+    city = {}
 
     for country in countries:
-        cities = list(country.city_set.values('id', 'name'))
-        results.append( {"id": country.id ,"name": country.name, "cities": cities  } )
+        cities = list(country.city_set.all())
+        cities_list = []
+        for city_obj in cities:
+            city = { 'id' : city_obj.id, 'name' : city_obj.name, 'areas' : list(city_obj.area_set.values_list('name', flat=True)) }
+            cities_list.append( city )
+        results.append( {"id": country.id ,"name": country.name, "iso_code" : country.iso_code, "cities": cities_list  } )
+
 
     return HttpResponse(dumps(results),
         content_type='application/json')
 
 
 def insurance_companies(request):
-    categories = NetworkCategory.objects.all()
 
-    results = []
-    for cat in categories:
-        results.append({ 'id' : cat.id, 'name' : '%s - %s' % (cat.network, cat.category) })
+    results = ProviderFullDetails.NETWORK_INDEX_FIELD_MAP
+    new_results = {}
+    for k,v in results.iteritems():
+        new_results.update({  k : v.replace('_', ' ').title() })
 
-    return HttpResponse(dumps(results),
+    #categories = NetworkCategory.objects.all()
+
+    #results = []
+    #for cat in categories:
+    #    results.append({ 'id' : cat.id, 'name' : '%s - %s' % (cat.network, cat.category) })
+
+    return HttpResponse(dumps(new_results),
             content_type='application/json')
 
 import operator
@@ -97,6 +109,7 @@ def providers_list(request):
 
     query = request.GET.get('query', None)
     type = request.GET.get('type', None)
+    area = request.GET.get('area', None)
     city = request.GET.get('city', None)
     country = request.GET.get('country', None)
     longitude = request.GET.get('longitude', '')
@@ -111,36 +124,43 @@ def providers_list(request):
     query_args = []
     if query:
         query = query.strip()
-        kw_tag_qs = (Q(location__address1__icontains=query) |
-                                            Q( location__address2__icontains=query) |
-                                            Q( location__address3__icontains=query) |
-                                            Q( location__address4__icontains=query) |
-                                            Q( name__icontains=query)
+        kw_tag_qs = (Q(city=query) |
+                                            Q( country=query) |
+                                            Q( location=query) |
+                                            Q( area=query) |
+                                            Q( provider_name=query)
                      )
         query_args.append(kw_tag_qs)
+    if area:
+        kwargs.update({'area__icontains' : area })
+        cache_key = "%s_%s" % (cache_key , area)
     if city:
-        kwargs.update({ 'location__city_id' : city })
+        kwargs.update({ 'city__icontains' : city })
         cache_key = "%s_%s" % (cache_key , city)
     if country:
-        kwargs.update({ 'location__country_id' : country })
+        country = COUNTRY_ISO_CODE_MAP.get(country)
+        kwargs.update({ 'country' : country })
         cache_key = "%s_%s" % (cache_key , country)
     if networks:
-        kwargs.update({ 'networks_categories__id__in' : networks })
+        network_map = ProviderFullDetails.NETWORK_INDEX_FIELD_MAP
+        for id in networks:#should be OR here
+            kwargs.update({ network_map[int(id)] : True })
         cache_key = "%s_%s" % (cache_key , networks)
     if type:
-        kwargs.update({ 'type' : int(type) })
+        kwargs.update({ 'provider_type' : int(type) })
         cache_key = "%s_%s" % (cache_key , type)
 
     if kwargs:
+        kwargs = [kwargs]
         tag_qs = reduce(operator.and_, ( Q(**keyvalue)  for keyvalue in kwargs ))
         query_args.append(tag_qs)
 
     if query_args:
         query_final = reduce(operator.or_, (item for item in query_args))
-        providers = Provider.objects.filter(query_final).distinct()
+        providers = ProviderFullDetails.objects.filter(query_final).distinct()
 
     if not query_args:
-        providers = Provider.objects.all()
+        providers = ProviderFullDetails.objects.all()
 
     paginator = Paginator(providers, number_per_page)
 
@@ -199,6 +219,29 @@ def store_countries_networks_cities(request):
             NetworkCategory.objects.create(category=category['network'], network=netw)
 
     return HttpResponse("data refreshed")
+
+
+@login_required
+def extract_location_tags(request):
+
+    Country.objects.all().delete()
+    City.objects.all().delete()
+    Area.objects.all().delete()
+
+    for k,country in COUNTRY_ISO_CODE_MAP.iteritems():
+        country_obj = Country(name=country, iso_code=k)
+        country_obj.save()
+        cities = ProviderFullDetails.objects.filter(country=country).values( 'city' ).distinct()
+        for city in cities:
+            city_obj = City(name=city['city'], country=country_obj)
+            city_obj.save()
+            areas = ProviderFullDetails.objects.filter(city=city['city']).values( 'area' ).distinct()
+            for area in areas:
+                area_obj = Area(name=area['area'], city=city_obj)
+                area_obj.save()
+
+    return HttpResponse("data refreshed")
+
 
 
 @login_required
