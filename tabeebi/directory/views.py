@@ -143,8 +143,12 @@ def providers_list(request):
         cache_key = "%s_%s" % (cache_key , country)
     if networks:
         network_map = ProviderFullDetails.NETWORK_INDEX_FIELD_MAP
+        networks_query = []
         for id in networks:#should be OR here
-            kwargs.update({ network_map[int(id)] : True })
+            networks_query.append({ network_map[int(id)] : True })
+        net_tag_qs = reduce(operator.or_, ( Q( **keyvalue  )  for keyvalue in networks_query ))
+        query_args.append(net_tag_qs)
+
         cache_key = "%s_%s" % (cache_key , networks)
     if type:
         kwargs.update({ 'provider_type' : int(type) })
@@ -156,7 +160,7 @@ def providers_list(request):
         query_args.append(tag_qs)
 
     if query_args:
-        query_final = reduce(operator.or_, (item for item in query_args))
+        query_final = reduce(operator.and_, (item for item in query_args))
         providers = ProviderFullDetails.objects.filter(query_final).distinct()
 
     if not query_args:
