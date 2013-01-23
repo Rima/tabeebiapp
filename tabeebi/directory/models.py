@@ -218,7 +218,7 @@ class ProviderFullDetails(models.Model):
         res = []
         for fld in self._meta.fields:
             if isinstance(fld, NullBooleanField) and getattr(self, fld.name):
-                res.append( fld.verbose_name )
+                res.append( fld.verbose_name.title() )
         return res
 
     def location_data(self):

@@ -124,15 +124,15 @@ def providers_list(request):
     query_args = []
     if query:
         query = query.strip()
-        kw_tag_qs = (Q(city=query) |
-                                            Q( country=query) |
-                                            Q( location=query) |
-                                            Q( area=query) |
-                                            Q( provider_name=query)
-                     )
-        query_args.append(kw_tag_qs)
+        kwargs.update({'provider_name__icontains' : query })
     if area:
-        kwargs.update({'area__icontains' : area })
+        #kwargs.update({'area__icontains' : area })
+        area = area.strip()
+        kw_tag_qs = (                       Q( location__icontains=area) |
+                                            Q( area__icontains=area)
+            )
+        query_args.append(kw_tag_qs)
+
         cache_key = "%s_%s" % (cache_key , area)
     if city:
         kwargs.update({ 'city__icontains' : city })
