@@ -87,9 +87,9 @@ def countries_cities_list(request):
 def insurance_companies(request):
 
     results = ProviderFullDetails.NETWORK_INDEX_FIELD_MAP
-    new_results = {}
+    new_results = []
     for k,v in results.iteritems():
-        new_results.update({  k : v.replace('_', ' ').title() })
+        new_results.append({ 'id':  k, 'name' : v.replace('_', ' ').title() })
 
     #categories = NetworkCategory.objects.all()
 
