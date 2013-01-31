@@ -1,0 +1,66 @@
+/*################################
+  #                              #
+  #      by Claudiu Limban       #
+  #  http://sofuxro.elance.com   #
+  #                              #
+  ################################*/
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,button,cite,code,del,dfn,em,fieldset,figure,font,img,input,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,select,tbody,textarea,tfoot,thead,tr,th,td{margin:0;padding:0;border:0 none;outline:0 none;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0 none}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}a,button,input[type="submit"],input[type="reset"]{cursor:pointer}a{text-decoration:none}a:hover{text-decoration:underline}article,aside,figure,figure img,figcaption,hgroup,footer,header,nav,section,details{display:block;}img{color:transparent;font-size:0;vertical-align:middle;-ms-interpolation-mode:bicubic;}svg{overflow:hidden;}p,a{word-wrap:break-word;}
+/* end of reset */
+/* Golden ratio (0.62 + 0.38) -> for 1200px = 744px + 456px */
+
+* { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; }
+.clear { height:0; width:0; clear:both; }
+.hidden { display:none; }
+.clearfix:before, .clearfix:after { content:" "; display:table; }
+.clearfix:after { clear:both; }
+
+
+body { background:#40444D url('/site_media/img/gray_bg.png'); font-family:Arial, Helvetica, sans-serif; }
+.container { width:1024px; margin:0 auto; }
+
+
+.btn_green { height:40px; background:#9CCF35 background-image:-webkit-gradient(linear, left top, left bottom, from(#A7D939), to(#93C732)); background-image:-webkit-linear-gradient(top, #A7D939, #93C732); background-image:-moz-linear-gradient(top, #A7D939, #93C732); background-image:-o-linear-gradient(top, #A7D939, #93C732); background-image:linear-gradient(to bottom, #A7D939, #93C732); position:relative; padding:0 16px; -webkit-box-shadow:1px 1px 3px rgba(0, 0, 0, 0.1); box-shadow:1px 1px 3px rgba(0, 0, 0, 0.1); -webkit-border-radius:4px; border-radius:4px; border:1px solid #5B7D15; line-height:40px; color:#5F7D20; font-size:15px; font-weight:bold; text-shadow:1px 1px 0 #BDDE46; text-transform:uppercase; overflow:hidden; display:inline-block; }
+    .btn_green:after, .btn_green:before { content:" "; width:100%; height:40px; position:absolute; top:0; left:0; display:block; }
+    .btn_green:after  { -webkit-box-shadow:inset 0 0 2px 1px #CBE966; box-shadow:inset 0 0 2px 1px #CBE966; }
+    .btn_green:before { -webkit-box-shadow:inset 0 -3px 2px #5F8B20;  box-shadow:inset 0 -2px 3px #5F8B20; }
+    .btn_green:hover  { color:#475F17; text-decoration:none; }
+
+
+header { background:#5B9EEA url('/site_media/img/blue_bg.png'); padding:30px 0 0; overflow:hidden; }
+    header p { padding:0 0 0 10px; vertical-align:-7px; color:#FFF; font-size:13px; font-weight:bold; text-shadow:1px 1px 1px rgba(0, 0, 0, 0.2); text-transform:uppercase; display:inline-block; }
+    header .btn_green { float:right; }
+
+
+.content { min-height:580px; background:#5B9EEA url('/site_media/img/blue_bg.png'); position:relative; }
+    .content .slider_wrapper { position:relative; padding:120px 80px 0; }
+    .content .slider_wrapper .prev, .content .slider_wrapper .next { width:49px; height:49px; background:url('/site_media/img/sprite_1.png'); position:absolute; top:270px; }
+    .content .slider_wrapper .prev          { left:0; }
+    .content .slider_wrapper .prev:hover    { background-position:  0   -49px; }
+    .content .slider_wrapper .next          { background-position:-49px   0; right:0; }
+    .content .slider_wrapper .next:hover    { background-position:-49px -49px; }
+    .content .slider_wrapper section { min-height:512px; }
+    .content .js_buttons { position:absolute; top:400px; left:491px; overflow:hidden; }
+    .content .js_buttons button { width:17px; height:19px; background:url('/site_media/img/sprite_1.png') 0 -98px; float:left; margin:0 7px 0 0; display:inline-block; }
+    .content .js_buttons button.active, .content .js_buttons button:hover { background-position:-17px -98px; }
+    .content .js_buttons button.active { cursor:default; }
+    .content .phones { width:312px; height:511px; background:url('/site_media/img/phones.png'); position:relative; padding:90px 0 0 101px; z-index:1; }
+    .content .text { position:absolute; top:245px; left:491px; }
+    .content h1 { color:#FFF; font-size:22px; text-shadow:2px 2px 1px rgba(0, 0, 0, 0.1); }
+    .content h2 { width:300px; margin:10px 0 23px; color:#FFF; font-weight:normal; font-size:14px; line-height:25px; text-shadow:2px 2px 1px rgba(0, 0, 0, 0.1); }
+
+    .content .slide_3 img { margin:85px 100px 234px; }
+
+    .content .slide_4 .text { top:200px; left:0; }
+    .content .slide_4 h1, .content .slide_4 h2, .content .slide_4 .js_buttons { width:100%; left:0; padding:0 17%; text-align:center; }
+    .content .slide_4 .js_buttons        { top:350px; }
+    .content .slide_4 .js_buttons button { float:none; }
+    .content .slide_4 h1                 { top:176px; }
+    .content .slide_4 h2                 { width:100%; top:210px; }
+
+
+footer { width:100%; background:#40444D url('/site_media/img/gray_bg.png'); position:relative; margin:-101px 0 0; padding:75px 0 100px; border-top:1px solid #000; z-index:0; }
+    footer .social      { float:left; }
+    footer nav          { float:right; color:#B5BCC8; font-size:11px; font-weight:bold; text-shadow:1px 1px 1px #333; text-transform:uppercase; }
+    footer nav a        { padding:0 4px; color:#B5BCC8; }
+    footer nav a:hover  { color:#FFF; text-decoration:none; }
