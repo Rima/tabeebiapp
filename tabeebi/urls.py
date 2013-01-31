@@ -6,7 +6,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'tabeebi.views.home', name='home'),
+    url(r'^$', 'tabeebi.views.home', name='home'),
+    url(r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT }),
     url(r'^webservices/query/', 'tabeebi.directory.views.serializer'),
 
     url( r'^GetDataStates', 'tabeebi.directory.views.data_states'  ),
