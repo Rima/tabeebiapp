@@ -55,12 +55,9 @@ var tabeebi = {
                     wrp.find('.active').removeClass('active');
                     $(wrp.find('button')[current - 1]).addClass('active');
                 });
-                console.log(current);
-                var zindex = parseInt(slider.find( 'section:visible .phones' ).css( "z-index" ), 2 );
-                console.log(zindex);
+                //var zindex = parseInt(slider.find( 'section:visible .phones' ).css( "z-index" ), 2 );
                 var new_section = $(slider.find('section')[current - 1]);
-                new_section.find('.phones').css('z-index', zindex + 1);
-                slider.find('section:visible .phones').css('z-index', zindex - 1);    
+
                 slider.find('section:visible').fadeOut(function(){
                     new_section.fadeIn();
                 });

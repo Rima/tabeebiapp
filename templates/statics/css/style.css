@@ -40,23 +40,23 @@ header { background:#5B9EEA url('/site_media/img/blue_bg.png'); padding:30px 0 0
     .content .slider_wrapper .next          { background-position:-49px   0; right:0; }
     .content .slider_wrapper .next:hover    { background-position:-49px -49px; }
     .content .slider_wrapper section { min-height:512px; }
-    .content .js_buttons { position:absolute; top:400px; left:491px; overflow:hidden; }
+    .content .js_buttons { position:absolute; top:425px; left:491px; overflow:hidden; }
     .content .js_buttons button { width:17px; height:19px; background:url('/site_media/img/sprite_1.png') 0 -98px; float:left; margin:0 7px 0 0; display:inline-block; }
     .content .js_buttons button.active, .content .js_buttons button:hover { background-position:-17px -98px; }
     .content .js_buttons button.active { cursor:default; }
     .content .phones { width:312px; height:511px; background:url('/site_media/img/phones.png'); position:relative; padding:90px 0 0 101px; z-index:1; }
-    .content .text { position:absolute; top:245px; left:491px; }
+    .content .text { position:absolute; top:230px; left:491px; }
     .content h1 { color:#FFF; font-size:22px; text-shadow:2px 2px 1px rgba(0, 0, 0, 0.1); }
     .content h2 { width:300px; margin:10px 0 23px; color:#FFF; font-weight:normal; font-size:14px; line-height:25px; text-shadow:2px 2px 1px rgba(0, 0, 0, 0.1); }
 
     .content .slide_3 img { margin:85px 100px 234px; }
 
-    .content .slide_4 .text { top:200px; left:0; }
-    .content .slide_4 h1, .content .slide_4 h2, .content .slide_4 .js_buttons { width:100%; left:0; padding:0 17%; text-align:center; }
-    .content .slide_4 .js_buttons        { top:350px; }
-    .content .slide_4 .js_buttons button { float:none; }
-    .content .slide_4 h1                 { top:176px; }
-    .content .slide_4 h2                 { width:100%; top:210px; }
+    .content .slide_5 .text { top:200px; left:0; }
+    .content .slide_5 h1, .content .slide_5 h2, .content .slide_5 .js_buttons { width:100%; left:0; padding:0 17%; text-align:center; }
+    .content .slide_5 .js_buttons        { top:350px; }
+    .content .slide_5 .js_buttons button { float:none; }
+    .content .slide_5 h1                 { top:176px; }
+    .content .slide_5 h2                 { width:100%; top:210px; }
 
 
 footer { width:100%; background:#40444D url('/site_media/img/gray_bg.png'); position:relative; margin:-101px 0 0; padding:75px 0 100px; border-top:1px solid #000; z-index:0; }
