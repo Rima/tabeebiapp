@@ -15,12 +15,12 @@ admin.site.register(DataState, DataStatesAdmin)
 class ProviderAdmin(admin.ModelAdmin):
     readonly_fields = ('location',)
 
-admin.site.register(Provider, ProviderAdmin)
+#admin.site.register(Provider, ProviderAdmin)
 
 
 class LocationAdmin(admin.ModelAdmin):
     search_fields = ('address1', 'address2')
-admin.site.register(Location, LocationAdmin)
+#admin.site.register(Location, LocationAdmin)
 
 
 class FAQAdmin(admin.ModelAdmin):
@@ -31,7 +31,7 @@ admin.site.register(FrequentlyAskedQuestion, FAQAdmin)
 class FlatTableAdmin(admin.ModelAdmin):
     list_display = ('provider', 'type', 'network', 'country', 'city', 'pobox', 'telephone', 'fax', 'location1', 'location2')
 
-admin.site.register(FlatTable, FlatTableAdmin)
+#admin.site.register(FlatTable, FlatTableAdmin)
 
 
 class ProviderFullDetailsAdmin(admin.ModelAdmin):
