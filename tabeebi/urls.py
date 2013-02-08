@@ -24,8 +24,8 @@ urlpatterns = patterns('',
     url(r'^static/admin/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.ADMIN_STATIC}),
 
 
-    url( r'^refresh_data', 'tabeebi.directory.views.store_data_in_places'  ),
+    #url( r'^refresh_data', 'tabeebi.directory.views.store_data_in_places'  ),
     url( r'^refresh_area_data', 'tabeebi.directory.views.extract_location_tags'  ),
-    url( r'^refresh_category_data', 'tabeebi.directory.views.store_countries_networks_cities'  ),
+    #url( r'^refresh_category_data', 'tabeebi.directory.views.store_countries_networks_cities'  ),
 
 )
