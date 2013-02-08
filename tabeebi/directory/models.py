@@ -245,13 +245,7 @@ class ProviderFullDetails(models.Model):
             'distance' : '',
 
 
-            "other":[{"fieldname":"work days",
-                     "fieldvalue":" Mon till Thu"},
-                    {"fieldname":"Emergency",
-                     "fieldvalue":"YES"}],
+            "other":[],
 
-            "other_contacts": [
-                    {"fieldname":"mobile phone",
-                     "fieldvalue":"0936726827"},
-            ]
+            "other_contacts": []
         }
