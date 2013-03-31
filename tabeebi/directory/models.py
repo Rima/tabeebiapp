@@ -181,6 +181,23 @@ class ProviderFullDetails(models.Model):
     metlife_alico_restricted_green = models.NullBooleanField()
 
 
+    oman_insurance_premium = models.NullBooleanField()
+    oman_insurance_comprehensive_welcare_group = models.NullBooleanField()
+    oman_insurance_comprehensive_plus = models.NullBooleanField()
+    oman_insurance_comprehensive = models.NullBooleanField()
+    oman_insurance_restricted = models.NullBooleanField()
+
+    neuron_general_plus = models.NullBooleanField()
+    expat_solutions_premier = models.NullBooleanField()
+    aetna_ihp = models.NullBooleanField()
+    aetna_rhp = models.NullBooleanField()
+    aetna_gold = models.NullBooleanField()
+    aetna_pearl = models.NullBooleanField()
+    aetna_silver = models.NullBooleanField()
+    aetna_bronze = models.NullBooleanField()
+
+
+
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
 
@@ -208,6 +225,21 @@ class ProviderFullDetails(models.Model):
         20 : 'metlife_alico_standard_silver',
         21 : 'metlife_alico_limited_blue',
         22 : 'metlife_alico_restricted_green',
+
+        23 : 'oman_insurance_premium',
+        24 : 'oman_insurance_comprehensive_welcare_group',
+        25 : 'oman_insurance_comprehensive_plus',
+        26 : 'oman_insurance_comprehensive',
+        27 : 'oman_insurance_restricted',
+        28 : 'neuron_general_plus',
+        29 : 'expat_solutions_premier',
+        30 : 'aetna_ihp',
+        31 : 'aetna_rhp',
+        32 : 'aetna_gold',
+        33 : 'aetna_pearl',
+        34 : 'aetna_silver',
+        35 : 'aetna_bronze',
+
     }
 
     def __unicode__(self):
